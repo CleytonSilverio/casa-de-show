@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Shows</title>
+	<title>Casas</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -23,20 +23,19 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a th:href="@{/}">Inicio</a></li>
-                    <li><a th:href="@{/casa}">Casas</a></li>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li class="active"><a th:href="@{/casa}">Casas</a></li>
                     <li><a th:href="@{/adicionar/}">Adicionar Show</a></li>
                     <li><a th:href="@{/adicionarcasa/}">Adicionar Casa</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<strong>Shows</strong>
+			<strong>Casas</strong>
 		</div>
 		<div class="panel-body">
 			<div class="table-responsive">
@@ -44,32 +43,29 @@
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>Show</th>
-							<th>Preço</th>
-							<th>Data</th>
-							<th>Local</th>
-							<th>Qtd. restante de ingressos</th>
+							<th>Nome da casa</th>
+							<th>Endereço</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="mostra : ${shows}">
-							<td th:text="${mostra.id}"></td>
-							<td th:text="${mostra.shows}"></td>
-							<td th:text="${mostra.valor}"></td>
-							<td th:text="${#dates.format(mostra, 'dd/MM/yyyy')}"></td>
-							<td th:text="${mostra.local}"></td>
-							<td th:text="${mostra.IngRestante}"></td>								
+						<tr th:each="casas : ${casa}">
+							<td th:text="${casas.id}"></td>
+							<td th:text="${casas.nome}"></td>
+							<td th:text="${casas.endereco}"></td>				
 							<td>
 								<div class="btn-group pull-right">
-							   		<a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${mostra.id})}" >Editar</a>
-							   		<a class="delete btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${mostra.id})}">Excluir</a>
+							   		<a class="btn btn-sm btn-primary" th:href="@{/editcasa/{id}(id=${casas.id})}" >Editar</a>
+							   		<a class="delete btn btn-sm btn-danger" th:href="@{/deletecasa/{id}(id=${casas.id})}">Excluir</a>
 							   </div>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+		</div>
+		<div class="panel-footer">
+			<a class="btn btn-sm btn-success" th:href="@{/adicionarcasa}" >Adicionar</a>
 		</div>
 	</div>
 </body>

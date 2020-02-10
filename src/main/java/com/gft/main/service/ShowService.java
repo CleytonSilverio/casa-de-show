@@ -1,6 +1,5 @@
 package com.gft.main.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +53,7 @@ public class ShowService {
 				newEntity.setData(entity.getData());
 				newEntity.setValor(entity.getValor());
 				newEntity.setIngRestante(entity.getIngRestante());
+				newEntity.setCasa(entity.getCasa());
 
 				newEntity = repository.save(newEntity);
 				
