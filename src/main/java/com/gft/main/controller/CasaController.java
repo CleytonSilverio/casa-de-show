@@ -1,6 +1,5 @@
 package com.gft.main.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,8 +56,8 @@ public class CasaController {
 		return findAll();
 	}
 	
-	@RequestMapping(path = {"/editcasa", "/editcasa/{id}"})
-    public String editarPorId(Model model, @PathVariable("id") Optional<Long> id) throws RecordNotFoundException {
+	@RequestMapping(path = {"/editcasa", "/editcasa/{idCasa}"})
+    public String editarPorId(Model model, @PathVariable("idCasa") Optional<Long> id) throws RecordNotFoundException {
         if (id.isPresent()) {
             Casa entity = service.acharPorId(id.get());
             model.addAttribute("casa", entity);
@@ -69,8 +67,8 @@ public class CasaController {
         return "addcasa";
     }
 	
-	@RequestMapping(path = "/deletecasa/{id}")
-    public String deleteEmployeeById(Model model, @PathVariable("id") Long id) throws RecordNotFoundException {
+	@RequestMapping(path = "/deletecasa/{idCasa}")
+    public String deleteEmployeeById(Model model, @PathVariable("idCasa") Long id) throws RecordNotFoundException {
         service.apagarCasa(id);
         return "redirect:/casa";
     }

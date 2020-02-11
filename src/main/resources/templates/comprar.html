@@ -47,7 +47,7 @@
 		</div>
 		<div class="panel-body">
 			<form class="form-horizontal" th:object="${shows}"
-				th:action="@{/saveshow}" method="POST" style="margin: 10px">
+				th:action="@{/comprar}" method="POST" style="margin: 10px">
 				<div class="form-group">
 					<fieldset>
 						<div class="form-group row">
@@ -66,51 +66,55 @@
 						<div class="form-group row">
 							<div class="col-md-4"
 								th:classappend="${#fields.hasErrors('shows')}? 'has-error'">
-								<label>Show</label> <input type="text"
-									class="form-control input-sm" th:field="*{shows}"
-									autofocus="autofocus" placeholder="Informe o show"
-									maxlength="50" />
+								<label>Show:
+									<p th:text="*{shows}"></p>
+								</label>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-4"
 								th:classappend="${#fields.hasErrors('local')}? 'has-error'">
-								<label>Local</label> <input type="text"
-									class="form-control input-sm" th:field="*{local}"
-									maxlength="150" placeholder="Informe o local" />
+								<label>Local:
+									<p th:text="*{local}"></p>
+								</label>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-4"
 								th:classappend="${#fields.hasErrors('valor')}? 'has-error'">
-								<label>Valor</label> <input type="text"
-									class="form-control input-sm" th:field="*{valor}"
-									maxlength="150" placeholder="Informe o valor" />
+								<label>Valor:
+									<p th:text="*{valor}"></p>
+								</label>
+
 							</div>
 						</div>
+
 						<div class="form-group row">
 							<div class="col-md-4"
 								th:classappend="${#fields.hasErrors('IngRestante')}? 'has-error'">
-								<label>Quantidade de ingressos</label> <input type="text"
-									class="form-control input-sm" th:field="*{IngRestante}"
-									maxlength="150" placeholder="Informe a quantidade de ingressos" />
+								<label>Quantidade de ingressos para compra</label> <input
+									name="compra" type="number" class="form-control input-sm"
+									th:field="*{compra}" maxlength="150"
+									placeholder="Informe a quantidade de ingressos" />
 							</div>
 						</div>
+
+
 						<div class="form-group row">
 							<div class="col-md-2"
 								th:classappend="${#fields.hasErrors('data')}? 'has-error'">
-								<label>Data</label> <input type="date"
-									class="form-control input-sm" th:field="*{data}" />
+								<label>Data:
+									<p th:text="${#dates.format(data, 'dd/MM/yyyy')}"></p>
+								</label>
 							</div>
 						</div>
 						<div>
-							<label>Selecione uma casa: </label> 
-							 <select th:field="*{casa}">
-								<option th:each="casas : ${casinha}" th:value="${casas.idCasa}"
-									th:text="${casas.nome}" ></option>
-							</select>
+							<label>Selecione uma casa:
+								<p th:text="*{casa}">
+							</label> </select>
 						</div>
 				</div>
+
 				</fieldset>
 		</div>
 		<div class="form-group row">

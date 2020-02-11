@@ -50,13 +50,13 @@
 					</thead>
 					<tbody>
 						<tr th:each="casas : ${casa}">
-							<td th:text="${casas.id}"></td>
+							<td th:text="${casas.idCasa}"></td>
 							<td th:text="${casas.nome}"></td>
 							<td th:text="${casas.endereco}"></td>				
 							<td>
 								<div class="btn-group pull-right">
-							   		<a class="btn btn-sm btn-primary" th:href="@{/editcasa/{id}(id=${casas.id})}" >Editar</a>
-							   		<a class="delete btn btn-sm btn-danger" th:href="@{/deletecasa/{id}(id=${casas.id})}">Excluir</a>
+							   		<a class="btn btn-sm btn-primary" th:href="@{/editcasa/{idCasa}(id=${casas.idCasa})}" >Editar</a>
+							   		<a class="delete btn btn-sm btn-danger" th:href="@{/deletecasa/{idCasa}(id=${casas.idCasa})}">Excluir</a>
 							   </div>
 							</td>
 						</tr>
