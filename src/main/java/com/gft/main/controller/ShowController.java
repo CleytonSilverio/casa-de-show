@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,6 +45,7 @@ public class ShowController {
 		return mv;
 	}
 
+	@PreAuthorize("hasRole('GERENTE')")
 	@GetMapping("/adicionar")
 	public ModelAndView addShow(Show show) {
 
@@ -60,6 +62,7 @@ public class ShowController {
 		return home.findAll();
 	}
 
+	@PreAuthorize("hasRole('GERENTE')")
 	@PostMapping("/saveshow")
 	public ModelAndView saveShow(@Valid Show shows, BindingResult result, Casa casa) {
 
@@ -73,6 +76,7 @@ public class ShowController {
 		return findAll();
 	}
 	
+	@PreAuthorize("hasRole('GERENTE')")
 	@RequestMapping(path = {"/edit", "/edit/{id}"})
     public String editarPorId(Model model, @PathVariable("id") Optional<Long> id) throws RecordNotFoundException {
         if (id.isPresent()) {
@@ -84,6 +88,7 @@ public class ShowController {
         return "addshow";
     }
 	
+	@PreAuthorize("hasRole('GERENTE')")
 	@RequestMapping(path = "/delete/{id}")
     public String deleteShowById(Model model, @PathVariable("id") Long id) throws RecordNotFoundException {
         service.apagarShow(id);
@@ -103,15 +108,13 @@ public class ShowController {
 		return "comprar";
 	}
 	
+	
 	@PostMapping("/comprar")
 	public String comprar(Long id, int compra ) {
-
-		ModelAndView mv = new ModelAndView("/shows");
 		
 		Show show = repositorio.findById(id).get(); 
 		
 		show.setIngRestante(show.getIngRestante() - compra);
-		System.out.println(show.getIngRestante());
 		
 		repositorio.save(show);
 		

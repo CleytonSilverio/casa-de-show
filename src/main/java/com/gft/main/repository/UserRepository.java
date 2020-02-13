@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.gft.main.entidade.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UserRepository extends JpaRepository<Usuario, Long> {
 
+	Usuario findByNome(String nome);
+	
 }
