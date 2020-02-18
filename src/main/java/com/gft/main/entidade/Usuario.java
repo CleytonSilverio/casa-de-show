@@ -21,12 +21,9 @@ public class Usuario {
 
 	@Column(nullable = false, length = 50)
 	private String email;
-
+	
 	@Column(nullable = false, length = 50)
-	private String login;
-
-	@Column(nullable = false, length = 50)
-	private boolean ativo;
+	private int role;
 
 	public int getId() {
 		return id;
@@ -59,5 +56,14 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
+	}
+	
 
 }

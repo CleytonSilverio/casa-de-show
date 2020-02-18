@@ -42,6 +42,8 @@ public class Show implements Serializable{
 	
 	private int compra;
 	
+	private String estilo;
+	
 	@ManyToOne
 	@JoinColumn(name="casa_id")
 	private Casa casa;
@@ -109,5 +111,15 @@ public class Show implements Serializable{
 	public void setCompra(int compra) {
 		this.compra = compra;
 	}
+
+	public String getEstilo() {
+		return estilo;
+	}
+
+	public void setEstilo(String estilo) {
+		this.estilo = estilo;
+	}
+	
+	
 
 }

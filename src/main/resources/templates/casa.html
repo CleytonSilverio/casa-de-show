@@ -24,12 +24,13 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a th:href="@{/}">Inicio</a></li>
-                    <li class="active"><a th:href="@{/casa}">Casas</a></li>
-                    <li><a th:href="@{/adicionar/}">Adicionar Show</a></li>
-                    <li><a th:href="@{/adicionarcasa/}">Adicionar Casa</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+                    <li><a th:href="@{/adicionar/}">Adicionar Show</a></li>
+                    <li><a th:href="@{/adicionarcasa/}">Adicionar Casa</a></li>
+					<li class="active"><a href="./logout">Sair <span
+							class="sr-only">(current)</span></a></li>
+				</ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
@@ -55,8 +56,8 @@
 							<td th:text="${casas.endereco}"></td>				
 							<td>
 								<div class="btn-group pull-right">
-							   		<a class="btn btn-sm btn-primary" th:href="@{/editcasa/{idCasa}(id=${casas.idCasa})}" >Editar</a>
-							   		<a class="delete btn btn-sm btn-danger" th:href="@{/deletecasa/{idCasa}(id=${casas.idCasa})}">Excluir</a>
+							   		<a class="btn btn-sm btn-primary" th:href="@{/editcasa/{idCasa}(idCasa=${casas.idCasa})}" >Editar</a>
+							   		<a class="delete btn btn-sm btn-danger" th:href="@{/deletecasa/{idCasa}(idCasa=${casas.idCasa})}">Excluir</a>
 							   </div>
 							</td>
 						</tr>
