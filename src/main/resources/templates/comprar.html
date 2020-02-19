@@ -41,9 +41,9 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/casa}">Casas</a>
 				</li>
-				<li class="nav-item"><a class="nav-link"
+				<li class="nav-item"><a class="nav-link" sec:authorize="hasRole('GERENTE')"
 					th:href="@{/adicionar/}">Adicionar Show</a></li>
-				<li><a class="nav-link" th:href="@{/adicionarcasa/}">Adicionar
+				<li><a class="nav-link" th:href="@{/adicionarcasa/}" sec:authorize="hasRole('GERENTE')">Adicionar
 						Casa</a></li>
 				<li class="active"><a class="nav-link" href="./logout">Sair
 						<span class="sr-only">(current) 

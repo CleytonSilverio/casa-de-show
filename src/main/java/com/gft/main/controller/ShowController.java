@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Role;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gft.main.entidade.Casa;
-import com.gft.main.entidade.Ingressos;
 import com.gft.main.entidade.Show;
 import com.gft.main.exception.RecordNotFoundException;
 import com.gft.main.repository.ShowRepository;
 import com.gft.main.service.CasaService;
-import com.gft.main.service.IngressosService;
 import com.gft.main.service.ShowService;
 
 @Controller
@@ -39,8 +37,6 @@ public class ShowController {
 	@Autowired
 	private ShowRepository repositorio;
 	
-	@Autowired
-	private IngressosService ingressos;
 	
 	@GetMapping("/")
 	public ModelAndView findAll() {
@@ -54,13 +50,13 @@ public class ShowController {
 	
 	@GetMapping("/adicionar")
 	@PreAuthorize("hasRole('GERENTE')")
+	@Secured("ROLE_GERENTE")
 	public ModelAndView addShow(Show show, BindingResult result) {
 		
 		ModelAndView mv = new ModelAndView("/addshow");
 		if(result.hasErrors()) {
-			mv.addObject(result);
+			mv.addObject(result.getAllErrors());
 		}else {
-			System.out.println("Deu merda aqui");
 		}
 		mv.addObject("shows", show);
 		mv.addObject("listar", service.findAll());
@@ -77,6 +73,7 @@ public class ShowController {
 	
 	@PostMapping("/saveshow")
 	@PreAuthorize("hasRole('GERENTE')")
+	@Secured("ROLE_GERENTE")
 	public ModelAndView saveShow(@Valid Show shows, BindingResult result, Casa casa) {
 		
 		if (result.hasErrors()) {
@@ -124,7 +121,7 @@ public class ShowController {
 	
 	
 	@PostMapping("/comprar")
-	public String comprar(Long id, int compra, Ingressos ingressos) {
+	public String comprar(Long id, int compra) {
 		
 		Show show = repositorio.findById(id).get(); 
 		
