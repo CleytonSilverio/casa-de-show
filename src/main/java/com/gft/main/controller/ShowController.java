@@ -49,8 +49,6 @@ public class ShowController {
 
 	
 	@GetMapping("/adicionar")
-	@PreAuthorize("hasRole('GERENTE')")
-	@Secured("ROLE_GERENTE")
 	public ModelAndView addShow(Show show, BindingResult result) {
 		
 		ModelAndView mv = new ModelAndView("/addshow");
@@ -72,8 +70,6 @@ public class ShowController {
 
 	
 	@PostMapping("/saveshow")
-	@PreAuthorize("hasRole('GERENTE')")
-	@Secured("ROLE_GERENTE")
 	public ModelAndView saveShow(@Valid Show shows, BindingResult result, Casa casa) {
 		
 		if (result.hasErrors()) {
@@ -87,7 +83,6 @@ public class ShowController {
 	
 	
 	@RequestMapping(path = {"/edit", "/edit/{id}"})
-	@PreAuthorize("hasRole('GERENTE')")
     public String editarPorId(Model model, @PathVariable("id") Optional<Long> id) throws RecordNotFoundException {
         if (id.isPresent()) {
             Show entity = service.acharPorId(id.get());
@@ -100,7 +95,6 @@ public class ShowController {
 	
 	
 	@RequestMapping(path = "/delete/{id}")
-	@PreAuthorize("hasRole('GERENTE')")
     public String deleteShowById(Model model, @PathVariable("id") Long id) throws RecordNotFoundException {
         service.apagarShow(id);
         return "redirect:/";
