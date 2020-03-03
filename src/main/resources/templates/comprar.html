@@ -56,7 +56,7 @@
 		<div class="panel-heading">
 			<strong>Compra de ingressos</strong>
 		</div>
-
+		
 		<div class="w-50">
 			<form class="form-row" th:object="${shows}" th:action="@{/comprar}"
 				method="POST" style="margin: 10px">
@@ -132,9 +132,16 @@
 						</div>
 
 
-						<div class="form-group row">
-							<button type="submit" class="btn btn-sm btn-primary">Comprar</button>
-							<a th:href="@{/}" class="btn btn-sm btn-default">Cancelar</a>
+						<div th:if="*{IngRestante lt 1}" class="form-group row">
+							<th:block >
+								<a th:href="@{/}" class="btn btn-sm btn-primary">Página inicial</a>
+							</th:block>
+						</div>
+						<div th:if="*{IngRestante gt 0}" class="form-group row">
+							<th:block >
+								<button type="submit" class="btn btn-sm btn-primary">Comprar</button>
+								<a th:href="@{/}" class="btn btn-sm btn btn-secondary">Cancelar</a>
+							</th:block>
 						</div>
 					</fieldset>
 				</div>

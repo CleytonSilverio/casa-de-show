@@ -6,8 +6,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,6 +50,8 @@ public class ShowController {
 	public ModelAndView addShow(Show show, BindingResult result) {
 		
 		ModelAndView mv = new ModelAndView("/addshow");
+		
+		
 		if(result.hasErrors()) {
 			mv.addObject(result.getAllErrors());
 		}else {
