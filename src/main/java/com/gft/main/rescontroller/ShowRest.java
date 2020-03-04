@@ -3,6 +3,7 @@ package com.gft.main.rescontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gft.main.dto.CasaDto;
 import com.gft.main.dto.EventoDto;
 import com.gft.main.entidade.Casa;
 import com.gft.main.entidade.Show;
@@ -114,5 +116,149 @@ public class ShowRest {
 	               return ResponseEntity.ok().build();
 	           }).orElse(ResponseEntity.notFound().build());
 	}
+	
+	@ApiOperation(value = "Retorna uma lista de eventos ordenadas em decrescente pelo nome")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna uma lista de casas de show ordenadas em decrescente"),
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	    @ApiResponse(code = 404, message = "Não encontrado"),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+	})
+
+	@GetMapping("/desc/nome")
+	public ResponseEntity<List<EventoDto>> getCasasDesc() {
+		List<EventoDto> dto = EventoDto.converter(service.findAll(sortByNomeDesc()));
+		return ResponseEntity.ok(dto);
+	}
+	
+	private Sort sortByNomeDesc() {
+        return new Sort(Sort.Direction.DESC, "nome");
+    }
+	
+	@ApiOperation(value = "Retorna uma lista de eventos ordenadas em crescente pelo nome")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna uma lista de casas de show ordenadas em decrescente"),
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	    @ApiResponse(code = 404, message = "Não encontrado"),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+	})
+
+	@GetMapping("/asc/nome")
+	public ResponseEntity<List<EventoDto>> getEventoAsc() {
+		List<EventoDto> dto = EventoDto.converter(service.findAll(sortByNomeAsc()));
+		return ResponseEntity.ok(dto);
+	}
+	
+	private Sort sortByNomeAsc() {
+        return new Sort(Sort.Direction.ASC, "nome");
+    }
+	
+	@ApiOperation(value = "Retorna uma lista de eventos ordenadas em decrescente pelo valor")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna uma lista de casas de show ordenadas em decrescente"),
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	    @ApiResponse(code = 404, message = "Não encontrado"),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+	})
+
+	@GetMapping("/desc/valor")
+	public ResponseEntity<List<EventoDto>> getValorDesc() {
+		List<EventoDto> dto = EventoDto.converter(service.findAll(sortByValorDesc()));
+		return ResponseEntity.ok(dto);
+	}
+	
+	private Sort sortByValorDesc() {
+        return new Sort(Sort.Direction.DESC, "valor");
+    }
+	
+	@ApiOperation(value = "Retorna uma lista de eventos ordenadas em crescente pelo valor")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna uma lista de casas de show ordenadas em decrescente"),
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	    @ApiResponse(code = 404, message = "Não encontrado"),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+	})
+
+	@GetMapping("/asc/valor")
+	public ResponseEntity<List<EventoDto>> getEventoValorAsc() {
+		List<EventoDto> dto = EventoDto.converter(service.findAll(sortByValorAsc()));
+		return ResponseEntity.ok(dto);
+	}
+	
+	private Sort sortByValorAsc() {
+        return new Sort(Sort.Direction.ASC, "valor");
+    }
+	
+	@ApiOperation(value = "Retorna uma lista de eventos ordenadas em decrescente pelo valor")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna uma lista de casas de show ordenadas em decrescente"),
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	    @ApiResponse(code = 404, message = "Não encontrado"),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+	})
+
+	@GetMapping("/desc/local")
+	public ResponseEntity<List<EventoDto>> getLocalDesc() {
+		List<EventoDto> dto = EventoDto.converter(service.findAll(sortByLocalDesc()));
+		return ResponseEntity.ok(dto);
+	}
+	
+	private Sort sortByLocalDesc() {
+        return new Sort(Sort.Direction.DESC, "local");
+    }
+	
+	@ApiOperation(value = "Retorna uma lista de eventos ordenadas em crescente pelo valor")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna uma lista de casas de show ordenadas em decrescente"),
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	    @ApiResponse(code = 404, message = "Não encontrado"),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+	})
+
+	@GetMapping("/asc/local")
+	public ResponseEntity<List<EventoDto>> getEventoLocalAsc() {
+		List<EventoDto> dto = EventoDto.converter(service.findAll(sortByLocalAsc()));
+		return ResponseEntity.ok(dto);
+	}
+	
+	private Sort sortByLocalAsc() {
+        return new Sort(Sort.Direction.ASC, "local");
+    }
+	
+	@ApiOperation(value = "Retorna uma lista de eventos ordenadas em decrescente pela data")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna uma lista de casas de show ordenadas em decrescente"),
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	    @ApiResponse(code = 404, message = "Não encontrado"),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+	})
+
+	@GetMapping("/desc/data")
+	public ResponseEntity<List<EventoDto>> getDataDesc() {
+		List<EventoDto> dto = EventoDto.converter(service.findAll(sortByDataDesc()));
+		return ResponseEntity.ok(dto);
+	}
+	
+	private Sort sortByDataDesc() {
+        return new Sort(Sort.Direction.DESC, "data");
+    }
+	
+	@ApiOperation(value = "Retorna uma lista de eventos ordenadas em crescente pela data")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna uma lista de casas de show ordenadas em decrescente"),
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	    @ApiResponse(code = 404, message = "Não encontrado"),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+	})
+
+	@GetMapping("/asc/data")
+	public ResponseEntity<List<EventoDto>> getEventoDataAsc() {
+		List<EventoDto> dto = EventoDto.converter(service.findAll(sortByDataAsc()));
+		return ResponseEntity.ok(dto);
+	}
+	
+	private Sort sortByDataAsc() {
+        return new Sort(Sort.Direction.ASC, "data");
+    }
 
 }
