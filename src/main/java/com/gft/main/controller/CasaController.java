@@ -38,7 +38,7 @@ public class CasaController {
 	@GetMapping("/adicionarcasa")
 	public ModelAndView add(Casa casa, BindingResult result) {
 
-		ModelAndView mv = new ModelAndView("/addcasa");
+		ModelAndView mv = new ModelAndView("addcasa");
 		
 		if(result.hasErrors()) {
 			mv.addObject(result.getAllErrors());

@@ -49,7 +49,7 @@ public class ShowController {
 	@GetMapping("/adicionar")
 	public ModelAndView addShow(Show show, BindingResult result) {
 		
-		ModelAndView mv = new ModelAndView("/addshow");
+		ModelAndView mv = new ModelAndView("addshow");
 		
 		
 		if(result.hasErrors()) {
