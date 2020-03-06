@@ -118,10 +118,16 @@ public class ShowController {
 	public String comprar(Long id, int compra) {
 		
 		Show show = repositorio.findById(id).get(); 
+		if(compra > 0) {
+			if(compra < show.getIngRestante()) {
+				show.setIngRestante(show.getIngRestante() - compra);
+				repositorio.save(show);
+			}
+		}
+		else {
+			compra = 0;
+		}
 		
-		show.setIngRestante(show.getIngRestante() - compra);
-		
-		repositorio.save(show);
 		
 			
 		return "redirect:/";
