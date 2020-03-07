@@ -113,7 +113,6 @@ public class ShowController {
 		return "comprar";
 	}
 	
-	
 	@PostMapping("/comprar")
 	public String comprar(Long id, int compra) {
 		
@@ -128,10 +127,6 @@ public class ShowController {
 			compra = 0;
 		}
 		
-		
-			
 		return "redirect:/";
 	}
-     
-
 }
