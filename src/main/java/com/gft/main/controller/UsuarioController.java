@@ -29,7 +29,7 @@ public class UsuarioController {
 
 		ModelAndView mv = new ModelAndView("shows");
 		
-		if(service.findAll() == null ) {
+		if(usuario.getNome() == "administrador" ) {
 			usuario.setRole("GERENTE");
 		}
 		else {
