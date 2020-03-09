@@ -29,6 +29,7 @@ public class UsuarioController {
 
 		ModelAndView mv = new ModelAndView("shows");
 		
+
 		System.out.println(usuario.getNome() + "<<<<<<<<<<<<<<<<<<<<<");
 		
 		if(!usuario.getNome().equals("administrador")) {
@@ -39,7 +40,7 @@ public class UsuarioController {
 			System.out.println("Setou como gerente");
 			usuario.setRole("GERENTE");
 		}
-		
+
 		service.save(usuario);
 
 		return mv;
