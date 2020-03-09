@@ -72,9 +72,12 @@ public class ShowController {
 	@PostMapping("/saveshow")
 	public ModelAndView saveShow(@Valid Show shows, BindingResult result, Casa casa) {
 		
+		System.out.println(shows.getData() + "<<<<<<<<<<<<");
+		
 		if (result.hasErrors()) {
 			return addShow(shows, result);
 		}
+		
 		
 		repositorio.save(shows);
 		
@@ -113,13 +116,12 @@ public class ShowController {
 		return "comprar";
 	}
 	
-	
 	@PostMapping("/comprar")
 	public String comprar(Long id, int compra) {
 		
 		Show show = repositorio.findById(id).get(); 
 		if(compra > 0) {
-			if(compra < show.getIngRestante()) {
+			if(compra <= show.getIngRestante()) {
 				show.setIngRestante(show.getIngRestante() - compra);
 				repositorio.save(show);
 			}
@@ -128,10 +130,6 @@ public class ShowController {
 			compra = 0;
 		}
 		
-		
-			
 		return "redirect:/";
 	}
-     
-
 }

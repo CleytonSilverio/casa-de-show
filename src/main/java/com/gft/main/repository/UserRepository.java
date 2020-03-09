@@ -8,6 +8,6 @@ import com.gft.main.entidade.Usuario;
 @Repository
 public interface UserRepository extends JpaRepository<Usuario, Long> {
 
-	
+	Usuario findByNome(String nome);
 	
 }

@@ -101,7 +101,8 @@
 							<div class="col-md-3"
 								th:classappend="${#fields.hasErrors('data')}? 'has-error'">
 								<label>Data</label> <input type="date"
-									class="form-control input-sm" th:field="*{data}" />
+									class="form-control input-sm" th:field="*{data}"
+									maxlength="150" placeholder="data" />
 							</div>
 						</div>
 						<div class="col-md-3">
