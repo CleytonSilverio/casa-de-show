@@ -55,7 +55,6 @@ public class ShowRest {
 	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 	})
 	@GetMapping(path = {"/{id}"})
-	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="Id não encontrado")
 	public ResponseEntity buscarEventoPorID(@PathVariable Long id){
 	   return service.findById(id)
 	           .map(record -> ResponseEntity.ok().body(record))
@@ -70,7 +69,6 @@ public class ShowRest {
 	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 	})
 	@PostMapping
-	@ResponseStatus(value=HttpStatus.OK, reason="Sucesso!")
 	public Show criarNovoEvento(@RequestBody Show show){
 	   return service.save(show);
 	}
@@ -84,7 +82,6 @@ public class ShowRest {
 	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 	})
 	@PutMapping(value="/{id}")
-	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="Id não encontrado")
 	public ResponseEntity atualizarEvento(@PathVariable("id") Long id,
 	                                      @RequestBody Show show) {
 	   return service.findById(id)
@@ -160,7 +157,6 @@ public class ShowRest {
 	    @ApiResponse(code = 404, message = "Não encontrado"),
 	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 	})
-
 	@GetMapping("/desc/valor")
 	public ResponseEntity<List<EventoDto>> getValorDesc() {
 		List<EventoDto> dto = EventoDto.converter(service.findAll(sortByValorDesc()));
