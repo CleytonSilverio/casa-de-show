@@ -32,7 +32,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 
 	protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/css/**", "/cadastro/**","/images/**", "/*").permitAll()
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/css/**", "/cadastro/**","/images/**", "/*", "/showcontroller/**", "/casacontroller/**").permitAll()
                 .antMatchers("/adicionar/**").hasRole("GERENTE")
                 .antMatchers("/adicionarcasa/**").hasRole("GERENTE")
                 .antMatchers("/casa/**").hasRole("GERENTE")
