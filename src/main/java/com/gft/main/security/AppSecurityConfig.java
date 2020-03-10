@@ -3,6 +3,7 @@ package com.gft.main.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,7 +33,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 
 	protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/css/**", "/cadastro/**","/images/**", "/*", "/showrestcontroller/**", "/casacontroller/**").permitAll()
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.OPTIONS , "/css/**", "/cadastro/**","/images/**", "/*", "/showrestcontroller/**", "/casacontroller/**").permitAll()
                 .antMatchers("/adicionar/**").hasRole("GERENTE")
                 .antMatchers("/adicionarcasa/**").hasRole("GERENTE")
                 .antMatchers("/casa/**").hasRole("GERENTE")
