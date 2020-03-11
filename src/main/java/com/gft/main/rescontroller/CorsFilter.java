@@ -11,6 +11,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Servlet Filter implementation class CorsFilter
+ */
 @WebFilter("/*")
 public class CorsFilter implements Filter {
 
@@ -37,4 +40,4 @@ public class CorsFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig)throws ServletException{}
 
-}
+} 

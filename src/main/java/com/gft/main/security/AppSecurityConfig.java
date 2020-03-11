@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
+import com.heroku.api.http.Http;
+
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -33,7 +35,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 
 	protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/css/**", "/cadastro/**","/images/**", "/**", "/*", "/showrestcontroller/**", "/casacontroller/**").permitAll()
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST ,"/css/**", "/cadastro/**","/images/**", "/**", "/*", "/showrestcontroller/**", "/casacontroller/**").permitAll()
                 .antMatchers("/adicionar/**").hasRole("GERENTE")
                 .antMatchers("/adicionarcasa/**").hasRole("GERENTE")
                 .antMatchers("/casa/**").hasRole("GERENTE")
