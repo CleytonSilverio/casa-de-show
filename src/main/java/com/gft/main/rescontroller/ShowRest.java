@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.gft.main.dto.CasaDto;
 import com.gft.main.dto.EventoDto;
 import com.gft.main.entidade.Casa;
 import com.gft.main.entidade.Show;
+import com.gft.main.repository.CasaRepository;
 import com.gft.main.repository.ShowRepository;
 
 import io.swagger.annotations.ApiOperation;
@@ -28,10 +30,12 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/showrestcontroller")
+@CrossOrigin
 public class ShowRest {
 	
 	@Autowired
 	ShowRepository service;
+	CasaRepository casa;
 	
 	@ApiOperation(value = "Retorna uma lista de eventos")
 	@ApiResponses(value = {
@@ -69,8 +73,23 @@ public class ShowRest {
 	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
 	})
 	@PostMapping
-	public Show criarNovoEvento(@RequestBody Show show){
+	public Show criarNovoEvento(@RequestBody Show show, Casa casa_id){
+		System.out.println("Entrou no post meu bom");
+		show.setCasa(casa_id);
 	   return service.save(show);
+	}
+	
+	@ApiOperation(value = "Retorna uma lista de casas de show")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Retorna a lista de casas de show"),
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+	    @ApiResponse(code = 404, message = "Não encontrado"),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+	})
+	@GetMapping("/casa")
+	public ResponseEntity<List<CasaDto>> getCasas() {
+		List<CasaDto> dto = CasaDto.converter(casa.findAll());
+		return ResponseEntity.ok(dto);
 	}
 	
 	@SuppressWarnings("rawtypes")
