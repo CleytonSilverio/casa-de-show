@@ -53,7 +53,7 @@ public class ShowController {
 		
 		
 		if(result.hasErrors()) {
-			mv.addObject(result.getAllErrors());
+			mv.addObject("erro" , result.getAllErrors());
 		}else {
 		}
 		mv.addObject("shows", show);

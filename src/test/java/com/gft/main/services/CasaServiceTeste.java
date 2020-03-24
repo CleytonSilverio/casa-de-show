@@ -2,6 +2,7 @@ package com.gft.main.services;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class CasaServiceTeste {
 			repositorio.save(a);
 		} catch (Exception e) {
 			e.printStackTrace();
+			Assert.fail();
 		}
 	}
 
@@ -43,6 +45,7 @@ public class CasaServiceTeste {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			Assert.fail();
 		}
 	}
 
@@ -53,6 +56,7 @@ public class CasaServiceTeste {
 			System.out.println("Casa: " + repositorio.findById(busca).get().getNome());
 		} catch (Exception e) {
 			e.printStackTrace();
+			Assert.fail();
 		}
 	}
 
