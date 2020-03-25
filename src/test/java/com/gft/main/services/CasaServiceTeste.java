@@ -5,12 +5,15 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.gft.main.entidade.Casa;
 import com.gft.main.repository.CasaRepository;
+import com.gft.main.service.CasaService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -18,6 +21,9 @@ public class CasaServiceTeste {
 
 	@Autowired
 	CasaRepository repositorio;
+	
+	@Mock
+	CasaService service;
 
 	@Test
 	public void deveriaCadastrarUmaCasa() {
@@ -58,6 +64,23 @@ public class CasaServiceTeste {
 			e.printStackTrace();
 			Assert.fail();
 		}
+	}
+	
+	@Test
+	public void deveriaListarPorIdViaService() {
+		try {
+			Long busca =  (long) 17;
+			Mockito.when(service.acharPorId(busca));
+		}catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail();
+		}
+	}
+	
+	@Test
+	public void esperoErroBuscaCasaService() throws Exception {
+		Long busca =  (long) 500;
+		Mockito.when(service.acharPorId(busca)).thenThrow(new Exception("Não existe esta casa"));
 	}
 
 }

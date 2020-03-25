@@ -86,7 +86,7 @@ public class ShowController {
 	
 	
 	@RequestMapping(path = {"/edit", "/edit/{id}"})
-    public String editarPorId(Model model, @PathVariable("id") Optional<Long> id) throws RecordNotFoundException {
+    public String editarPorId(Model model, @PathVariable("id") Optional<Long> id) throws Exception {
         if (id.isPresent()) {
             Show entity = service.acharPorId(id.get());
             model.addAttribute("shows", entity);
@@ -104,7 +104,7 @@ public class ShowController {
     }
 	
 	@RequestMapping(path = {"/comprar", "/comprarteste/{id}"})
-	public String comprar(Model model, @PathVariable("id") Optional<Long> id) throws RecordNotFoundException {
+	public String comprar(Model model, @PathVariable("id") Optional<Long> id) throws Exception {
 		if (id.isPresent()) {
             Show entity = service.acharPorId(id.get());
             entity.setIngRestante(entity.getIngRestante() - entity.getCompra());

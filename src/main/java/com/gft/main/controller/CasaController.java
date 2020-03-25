@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gft.main.entidade.Casa;
@@ -63,7 +62,7 @@ public class CasaController {
 	}
 	
 	@RequestMapping(path = {"/editcasa", "/editcasa/{idCasa}"})
-    public String editarPorId(Model model, @PathVariable("idCasa") Optional<Long> id) throws RecordNotFoundException {
+    public String editarPorId(Model model, @PathVariable("idCasa") Optional<Long> id) throws Exception {
         if (id.isPresent()) {
             Casa entity = service.acharPorId(id.get());
             model.addAttribute("casa", entity);
