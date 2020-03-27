@@ -45,21 +45,31 @@ public class ShowController {
 		return mv;
 	}
 
-	
 	@GetMapping("/adicionar")
 	public ModelAndView addShow(Show show, BindingResult result) {
 		
 		ModelAndView mv = new ModelAndView("addshow");
 		
-		
 		if(result.hasErrors()) {
-			mv.addObject("erro" , result.getAllErrors());
-		}else {
-		}
+			mv.addObject(result.getAllErrors());
+		} 
+		
 		mv.addObject("shows", show);
 		mv.addObject("listar", service.findAll());
 
 		return mv;
+	}
+	
+	@PostMapping("/saveshow")
+	public ModelAndView saveShow(@Valid Show shows, BindingResult result, Casa casa) {
+		
+		if (result.hasErrors()) {
+			return addShow(shows, result);
+		}
+		
+		repositorio.save(shows);
+		
+		return findAll();
 	}
 	
 	@ModelAttribute(value="casinha")
@@ -68,23 +78,6 @@ public class ShowController {
 		return home.findAll();
 	}
 
-	
-	@PostMapping("/saveshow")
-	public ModelAndView saveShow(@Valid Show shows, BindingResult result, Casa casa) {
-		
-		System.out.println(shows.getData() + "<<<<<<<<<<<<");
-		
-		if (result.hasErrors()) {
-			return addShow(shows, result);
-		}
-		
-		
-		repositorio.save(shows);
-		
-		return findAll();
-	}
-	
-	
 	@RequestMapping(path = {"/edit", "/edit/{id}"})
     public String editarPorId(Model model, @PathVariable("id") Optional<Long> id) throws Exception {
         if (id.isPresent()) {

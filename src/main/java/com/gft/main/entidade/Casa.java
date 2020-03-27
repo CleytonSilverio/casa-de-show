@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity (name = "casa")
 public class Casa implements Serializable{
@@ -21,9 +22,11 @@ public class Casa implements Serializable{
 	private Long idCasa;
 	
 	@Column(nullable = false, length = 50)
+	@NotBlank(message= "A casa precisa ter um nome!")
 	private String nome;
 	
 	@Column(nullable = false, length = 50)
+	@NotBlank(message= "A casa precisa ter um endereço!")
 	private String endereco;
 	
 	@OneToMany(mappedBy="casa", cascade = CascadeType.REMOVE, orphanRemoval = true)

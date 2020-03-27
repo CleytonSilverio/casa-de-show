@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,7 +27,7 @@ public class Show implements Serializable {
 	private Long id;
 
 	@Column(nullable = false, length = 50)
-	@NotNull(message = "Nome do show é obrigatório.")
+	@NotBlank(message = "Nome do show é obrigatório.")
 	private String shows;
 
 	private double valor;
@@ -37,6 +38,7 @@ public class Show implements Serializable {
 	private Date data;
 
 	@Column(nullable = false, length = 2000)
+	@NotBlank(message = "Local é uma informação obrigatória.")
 	private String local;
 
 	@NotNull(message = "Quantidade é obrigatório.")
