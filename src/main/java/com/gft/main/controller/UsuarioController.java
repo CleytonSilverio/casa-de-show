@@ -23,6 +23,12 @@ public class UsuarioController {
 		mv.addObject("usuario", usuario);
 		return mv;
 	}
+	
+	@GetMapping("/login")
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView("login");
+		return mv;
+	}
 
 	@PostMapping("/cadastro")
 	public ModelAndView novoUsuario(@Valid Usuario usuario) {

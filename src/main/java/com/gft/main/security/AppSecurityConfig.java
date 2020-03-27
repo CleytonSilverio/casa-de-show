@@ -42,7 +42,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/adicionarcasa/**").hasRole("GERENTE")
                 .antMatchers("/casa/**").hasRole("GERENTE")
                 .anyRequest().authenticated()
-                .and().formLogin().defaultSuccessUrl("/",true).permitAll()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login").permitAll()
                 .and().logout()
                 .and()
                 .exceptionHandling().accessDeniedPage("/acessonegado");

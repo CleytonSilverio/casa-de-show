@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 
 <head>
@@ -11,7 +13,7 @@
 <meta name="keywords" content="Colorlib Templates">
 
 <!-- Title Page-->
-<title>Au Register Forms by Colorlib</title>
+<title>Eventus! - Cadastre-se</title>
 
 <!-- Icons font CSS-->
 <link href="vendor/mdi-font/css/material-design-iconic-font.min.css"
@@ -52,11 +54,11 @@
 									th:field="*{email}" name="email">
 							</div>
 							<div class="input-group">
-								<input class="input--style-3" type="text" placeholder="Senha"
+								<input class="input--style-3" type="password" placeholder="Senha"
 									th:field="*{senha}" name="phone">
 							</div>
 							<div class="p-t-10">
-								<button class="btn btn--pill btn--green" type="submit">Submit</button>
+								<button class="btn btn--pill btn--green" th:href="@{/login}" type="submit">Submit</button>
 							</div>
 						</form>
 					</div>
