@@ -63,18 +63,17 @@ public class ShowController {
 	@PostMapping("/saveshow")
 	public ModelAndView saveShow(@Valid Show shows, BindingResult result, Casa casa) {
 		
-		if (result.hasErrors()) {
+		if(result.hasErrors()) {
 			return addShow(shows, result);
 		}
 		
-		repositorio.save(shows);
+		service.criarAtualizarShow(shows);
 		
 		return findAll();
 	}
 	
 	@ModelAttribute(value="casinha")
 	public List<Casa> buscarCasas() {
-
 		return home.findAll();
 	}
 
@@ -111,7 +110,6 @@ public class ShowController {
 	
 	@PostMapping("/comprar")
 	public String comprar(Long id, int compra) {
-		
 		Show show = repositorio.findById(id).get(); 
 		if(compra > 0) {
 			if(compra <= show.getIngRestante()) {
